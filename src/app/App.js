@@ -2,7 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "antd/dist/antd.css";
 import "../index.css";
-import { Table } from "antd";
+import { Table, Layout, Menu } from "antd";
+import AppHeader from "../common/AppHeader";
 
 const columns = [
   {
@@ -31,14 +32,19 @@ for (let i = 0; i < 100; i++) {
   });
 }
 
-const App = () => (
-    <Table
-    columns={columns}
-    dataSource={data}
-    pagination={{ pageSize: 100 }}
-    scroll={{ y: 240 }}
-  />
-)
+const App = () => {
+    return(
+      <div>
+        <AppHeader />
+        <Table
+        columns={columns}
+        dataSource={data}
+        pagination={{ pageSize: 100 }}
+        scroll={{ y: 240 }}
+        />
+      </div>
+  );
+}
 
 export default App;
 
