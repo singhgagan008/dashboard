@@ -2,8 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "antd/dist/antd.css";
 import "../index.css";
+import "./app.css";
 import { Table, Layout, Menu } from "antd";
 import AppHeader from "../common/AppHeader";
+import CardComponent from "../components/MainCounter";
 
 const columns = [
   {
@@ -36,6 +38,12 @@ const App = () => {
     return(
       <div>
         <AppHeader />
+        <div className = 'last-updated' >
+          Last updated: April 11, 2020, 21:21 GMT
+        </div>
+        <CardComponent name={"Total Cases"} data={12345}/>
+        <CardComponent name={"Total Recovered"} data={1234}/>
+        <CardComponent name={"Total Deaths"} data={123}/>
         <Table
         columns={columns}
         dataSource={data}
