@@ -64,9 +64,11 @@ const App = () => {
         <div className = 'last-updated' >
           Last updated: April 11, 2020, 21:21 GMT
         </div>
-        <CardComponent name={"Total Cases"} data={12345}/>
-        <CardComponent name={"Total Recovered"} data={1234}/>
-        <CardComponent name={"Total Deaths"} data={123}/>
+        <div className='card-table'>
+          <CardComponent name={"Total Cases"} data={12345}/>
+          <CardComponent name={"Total Recovered"} data={1234}/>
+          <CardComponent name={"Total Deaths"} data={123}/>
+        </div>
         <Table
         columns={columns}
         dataSource={data}
