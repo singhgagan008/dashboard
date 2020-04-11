@@ -9,18 +9,37 @@ import CardComponent from "../components/MainCounter";
 
 const columns = [
   {
-    title: "Name",
-    dataIndex: "name",
+    title: "Country",
+    dataIndex: "country",
     width: 150
   },
   {
-    title: "Age",
-    dataIndex: "age",
+    title: "Total Confirmed",
+    dataIndex: "totalConfirmed",
     width: 150
   },
   {
-    title: "Address",
-    dataIndex: "address"
+    title: "New Confirmed",
+    dataIndex: "newConfirmed",
+    width: 150
+  },
+  {
+    title: "Total Deaths",
+    dataIndex: "totalDeaths"
+  },
+  {
+    title: "New Deaths",
+    dataIndex: "newDeaths",
+    width: 150
+  },
+  {
+    title: "Total Recovered",
+    dataIndex: "newRecovered",
+    width: 150
+  },
+  {
+    title: "Total Deaths",
+    dataIndex: "newDeaths"
   }
 ];
 
@@ -28,9 +47,13 @@ const data = [];
 for (let i = 0; i < 100; i++) {
   data.push({
     key: i,
-    name: `Edward King ${i}`,
-    age: 32,
-    address: `London, Park Lane no. ${i}`
+    country: 'ABC',
+    totalConfirmed: 123456,
+    newConfirmed: 12345,
+    totalDeaths: 1234,
+    newDeaths: 123,
+    newRecovered: 12,
+    newDeaths: 1
   });
 }
 
@@ -47,7 +70,7 @@ const App = () => {
         <Table
         columns={columns}
         dataSource={data}
-        pagination={{ pageSize: 100 }}
+        pagination={{ pageSize: 50 }}
         scroll={{ y: 240 }}
         />
       </div>
