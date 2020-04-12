@@ -9,9 +9,6 @@ const App = () => {
     return(
       <div>
         <AppHeader />
-        <div className = 'last-updated' >
-          Last updated: April 11, 2020, 21:21 GMT
-        </div>
         <DataComponent />
       </div>
   );

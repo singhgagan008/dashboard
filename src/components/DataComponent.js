@@ -4,19 +4,32 @@ import CardTable from "../components/CardTable";
 import { Table, Layout, Menu } from "antd";
 import { COLUMN_NAME, PAGE_SIZE } from "../constants";
 import {getSummary} from "../utils/APIUtils";
+import './component.css';
 
 class DataComponent extends React.Component {  
   state = {
     totalConfirmed:'',
     totalDeaths:'',
-    totalRecovered:''
+    totalRecovered:'',
+    lastUpdated:'',
+    data:''
   }
 
   loadPromise(){
     let promise = getSummary();
     promise            
         .then(response =>
-          response.json().then(json=>console.log(json))  
+          response.json().then(json =>
+            {
+              this.setState({
+                totalConfirmed: json.Global.TotalConfirmed ,
+                totalDeaths: json.Global.TotalDeaths,
+                totalRecovered: json.Global.TotalRecovered,
+                lastUpdated: json.Date,
+                data: json.data.Countries
+              })
+            }
+          )  
         )
         .catch(error => console.log(error));
   }
@@ -44,10 +57,11 @@ class DataComponent extends React.Component {
       
     return (
       <div className="dashContainer">
+        <div className = 'last-updated' >{this.state.lastUpdated}</div>
         <CardTable 
-          totalCases={123456}
-          totalRecovered={12345}
-          totalDeaths={123}
+          totalCases = {this.state.totalConfirmed}
+          totalRecovered = {this.state.totalRecovered}
+          totalDeaths = {this.state.totalDeaths}
         />
         <Table
           columns={columns}
