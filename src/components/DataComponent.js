@@ -15,7 +15,9 @@ class DataComponent extends React.Component {
   loadPromise(){
     let promise = getSummary();
     promise            
-        .then(response =>console.log(response))
+        .then(response =>
+          response.json().then(json=>console.log(json))  
+        )
         .catch(error => console.log(error));
   }
 
