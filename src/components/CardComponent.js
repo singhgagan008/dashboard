@@ -1,7 +1,7 @@
 import React from "react";
 import "antd/dist/antd.css";
 import { Card } from "antd";
-import './Maincounter.css'
+import './component.css';
 
 const CardComponent = (props) => {
     return (

@@ -4,3 +4,7 @@
     text-align: center;
     display: table-cell;
 }
+
+.card-table {
+    margin: 10px 20% 10px 20%;
+}
