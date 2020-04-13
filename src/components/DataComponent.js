@@ -11,9 +11,31 @@ class DataComponent extends React.Component {
     totalConfirmed:'',
     totalDeaths:'',
     totalRecovered:'',
+    newConfirmed: '',
+    newDeaths: '',
+    newRecovered: '',
     lastUpdated:'',
+    countriesData:'',
     data:''
   }
+
+  getTableData(){
+    const data = [];
+    console.log("here",this.state);
+    data.push({
+      key: 0,
+      country: 'World',
+      totalConfirmed: this.state.totalConfirmed,
+      newConfirmed: this.state.newConfirmed,
+      totalDeaths: this.state.totalDeaths,
+      newDeaths: this.state.newDeaths,
+      newRecovered: this.state.newRecovered,
+      totalRecovered: this.state.totalRecovered
+    });
+    this.setState({
+      data: data
+    });
+    }
 
   loadPromise(){
     let promise = getSummary();
@@ -21,13 +43,42 @@ class DataComponent extends React.Component {
         .then(response =>
           response.json().then(json =>
             {
+              const data = [];
+              data.push({
+                key: 0,
+                country: 'World',
+                totalConfirmed: json.Global.TotalConfirmed,
+                newConfirmed: json.Global.NewConfirmed,
+                totalDeaths: json.Global.TotalDeaths,
+                newDeaths: json.Global.NewDeaths,
+                newRecovered: json.Global.NewRecovered,
+                totalRecovered: json.Global.NewRecovered
+              });
+
+              for (let i = 0; i < json.Countries.length; i++) {
+                data.push({
+                  key: i+1,
+                  country: json.Countries[i].Country,
+                  totalConfirmed: json.Countries[i].TotalConfirmed,
+                  newConfirmed: json.Countries[i].NewConfirmed,
+                  totalDeaths: json.Countries[i].TotalDeaths,
+                  newDeaths: json.Countries[i].NewDeaths,
+                  newRecovered: json.Countries[i].NewRecovered,
+                  totalRecovered: json.Countries[i].TotalRecovered
+                });
+              }
+
               this.setState({
-                totalConfirmed: json.Global.TotalConfirmed ,
+                totalConfirmed: json.Global.TotalConfirmed,
                 totalDeaths: json.Global.TotalDeaths,
                 totalRecovered: json.Global.TotalRecovered,
+                newConfirmed: json.Global.NewConfirmed,
+                newDeaths: json.Global.NewDeaths,
+                newRecovered: json.Global.NewRecovered,
                 lastUpdated: json.Date,
-                data: json.data.Countries
-              })
+                countriesData: json.Countries,
+                data: data
+              });
             }
           )  
         )
@@ -36,38 +87,32 @@ class DataComponent extends React.Component {
 
   componentDidMount(){
     this.loadPromise();
+    this.getTableData();
+    console.log(this.state.data);
+  }
+
+
+    
+
+  componentDidUpdate() {
+    console.log('Component did update!')
   }
   
   render() {
     const columns = COLUMN_NAME;
-        
-    const data = [];
-    for (let i = 0; i < 100; i++) {
-      data.push({
-        key: i,
-        country: 'ABC',
-        totalConfirmed: 123456,
-        newConfirmed: 12345,
-        totalDeaths: 1234,
-        newDeaths: 123,
-        newRecovered: 12,
-        totalRecovered: 1
-      });
-    }
-      
     return (
       <div className="dashContainer">
         <div className = 'last-updated' >{this.state.lastUpdated}</div>
         <CardTable 
-          totalCases = {this.state.totalConfirmed}
+          totalCases =  {this.state.totalConfirmed}
           totalRecovered = {this.state.totalRecovered}
           totalDeaths = {this.state.totalDeaths}
         />
         <Table
           columns={columns}
-          dataSource={data}
+          dataSource={this.state.data}
           pagination={{ pageSize: PAGE_SIZE }}
-          scroll={{ y: 240 }}
+          scroll={{ y: 1240 }}
         />
       </div>
     );
@@ -75,3 +120,28 @@ class DataComponent extends React.Component {
 }
 
 export default DataComponent;
+
+
+// const data
+// data.push({
+//   key: 0,
+//   country: 'World',
+//   totalConfirmed: this.state.totalConfirmed,
+//   newConfirmed: this.state.newConfirmed,
+//   totalDeaths: this.state.totalDeaths,
+//   newDeaths: this.state.newDeaths,
+//   newRecovered: this.state.newRecovered,
+//   totalRecovered: this.state.totalRecovered
+
+// for (let i = 0; i < countriesData.length+1; i++) {
+//   data.push({
+//     key: i+1,
+//     country: this.state.data[i].Country,
+//     totalConfirmed: this.state.data[i].TotalConfirmed,
+//     newConfirmed: this.state.data[i].NewConfirmed,
+//     totalDeaths: this.state.data[i].TotalDeaths,
+//     newDeaths: this.state.data[i].NewDeaths,
+//     newRecovered: this.state.data[i].NewRecovered,
+//     totalRecovered: this.state.data[i].TotalRecovered
+//   });
+//  }

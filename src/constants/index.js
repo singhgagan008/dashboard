@@ -27,12 +27,12 @@ export const COLUMN_NAME = [
     },
     {
       title: "Total Recovered",
-      dataIndex: "newRecovered",
+      dataIndex: "totalRecovered",
       width: 150
     },
     {
-      title: "Total Deaths",
-      dataIndex: "newDeaths"
+      title: "New Recovered",
+      dataIndex: "newRecovered"
     }
   ];
 
