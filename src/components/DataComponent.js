@@ -18,7 +18,7 @@ class DataComponent extends React.Component {
     countriesData:'',
     data:''
   }
-
+/*
   getTableData(){
     const data = [];
     console.log("here",this.state);
@@ -36,7 +36,7 @@ class DataComponent extends React.Component {
       data: data
     });
     }
-
+*/
   loadPromise(){
     let promise = getSummary();
     promise            
@@ -87,7 +87,7 @@ class DataComponent extends React.Component {
 
   componentDidMount(){
     this.loadPromise();
-    this.getTableData();
+    //this.getTableData();
     console.log(this.state.data);
   }
 
