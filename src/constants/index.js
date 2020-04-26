@@ -28,7 +28,7 @@ export const COLUMN_NAME = [
           to ={{ 
             pathname:`country/${text}`,
             state: {
-              countryName: record.title
+              countryName: {text}
             }
           }}
         >{text}
