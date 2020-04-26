@@ -18,25 +18,7 @@ class DataComponent extends React.Component {
     countriesData:'',
     data:''
   }
-/*
-  getTableData(){
-    const data = [];
-    console.log("here",this.state);
-    data.push({
-      key: 0,
-      country: 'World',
-      totalConfirmed: this.state.totalConfirmed,
-      newConfirmed: this.state.newConfirmed,
-      totalDeaths: this.state.totalDeaths,
-      newDeaths: this.state.newDeaths,
-      newRecovered: this.state.newRecovered,
-      totalRecovered: this.state.totalRecovered
-    });
-    this.setState({
-      data: data
-    });
-    }
-*/
+
   loadPromise(){
     let promise = getSummary();
     promise            
@@ -91,9 +73,6 @@ class DataComponent extends React.Component {
     console.log(this.state.data);
   }
 
-
-    
-
   componentDidUpdate() {
     console.log('Component did update!')
   }
@@ -120,28 +99,3 @@ class DataComponent extends React.Component {
 }
 
 export default DataComponent;
-
-
-// const data
-// data.push({
-//   key: 0,
-//   country: 'World',
-//   totalConfirmed: this.state.totalConfirmed,
-//   newConfirmed: this.state.newConfirmed,
-//   totalDeaths: this.state.totalDeaths,
-//   newDeaths: this.state.newDeaths,
-//   newRecovered: this.state.newRecovered,
-//   totalRecovered: this.state.totalRecovered
-
-// for (let i = 0; i < countriesData.length+1; i++) {
-//   data.push({
-//     key: i+1,
-//     country: this.state.data[i].Country,
-//     totalConfirmed: this.state.data[i].TotalConfirmed,
-//     newConfirmed: this.state.data[i].NewConfirmed,
-//     totalDeaths: this.state.data[i].TotalDeaths,
-//     newDeaths: this.state.data[i].NewDeaths,
-//     newRecovered: this.state.data[i].NewRecovered,
-//     totalRecovered: this.state.data[i].TotalRecovered
-//   });
-//  }

@@ -19,6 +19,7 @@ export const COLUMN_NAME = [
         ,
         multiple: 1,
       },
+      
     },
     {
       title: "Total Confirmed",
