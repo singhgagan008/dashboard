@@ -24,7 +24,6 @@ export const COLUMN_NAME = [
       },
       render: (text,record) => (
         <Link
-          data-id={record.title}
           to ={{ 
             pathname:`country/${text.toLowerCase()}`,
             state: {
