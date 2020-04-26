@@ -1,3 +1,6 @@
+import React from 'react';
+import {Link} from 'react-router-dom';
+
 export const API_BASE_URL = 'https://api.covid19api.com';
 
 export const COLUMN_NAME = [
@@ -19,7 +22,17 @@ export const COLUMN_NAME = [
         ,
         multiple: 1,
       },
-      
+      render: (text,record) => (
+        <Link
+          data-id={record.title}
+          to ={{ 
+            pathname:`country/${text}`,
+            state: {
+              countryName: {text}
+            }
+          }}
+        >{text}
+        </Link>)
     },
     {
       title: "Total Confirmed",

@@ -1,10 +1,18 @@
 import React from 'react';
 
 
-class CountryDataComponent extends React.Component {  
+class CountryDataComponent extends React.Component {
+    state={
+        countryName:'xchkjxkcjk',
+    }
+    
+    componentDidMount(){
+        console.log(this.props.location.state.countryName.text);
+    }
+
     render(){
         return(
-            <div>"Country page"</div>
+        <div>{this.props.location.state.countryName.text}</div>
         )
     }
 }
