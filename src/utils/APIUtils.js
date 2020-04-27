@@ -8,6 +8,6 @@ export function getSummary(){
 
 export function getCountrySummary(countryName){
     return (
-        fetch(API_BASE_URL+`/live/country/${countryName}`)
+        fetch(API_BASE_URL+`/total/country/${countryName}`)
     );
 }

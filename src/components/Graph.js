@@ -1,12 +1,12 @@
 import React from 'react'
 import { Chart } from 'react-charts'
 
-const MyChart = () => {
+const MyChart = (props) => {
     const data = React.useMemo(
       () => [
         {
-          label: 'Series 1',
-          data: [[1585699200, 1], [1587699200, 2], [1589699200, 4], [1591699200, 2], [1593699200, 7]]
+          label: props.label,
+          data: props.data
         }
       ],
       []

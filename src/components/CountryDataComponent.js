@@ -5,26 +5,44 @@ import MyChart from './Graph';
  
 class CountryDataComponent extends React.Component {
     state={
-        countryName:'xchkjxkcjk',
+        countryName: '',
+        data: []
     }
 
     loadPromise(){
-        // let promise = getCountrySummary(this.props.location.state.countryName.text);
-        // promise            
-        // .then(response =>
-        //   response.json().then(json => console.log(json)
-        // ))
+        let promise = getCountrySummary(this.props.location.state.countryName.text);
+        promise            
+        .then(response =>
+          response.json().then(json => {this.formDataObject(json)}
+        ))
     }
+
+    formDataObject(responseArray){
+        const dataObject = [];
+        responseArray.forEach(element => {
+            dataObject.push([Date.parse(element.Date),element.Confirmed]);
+        });
+        this.setState({
+            data: dataObject
+        });
+    }
+
     componentDidMount(){
         this.loadPromise();
-      }
+    }
 
     render(){
-        return(
-            <div>
-                <MyChart />
-            </div>
-        )
+        if(this.state.data.length > 0) {
+            return(
+                <div>
+                    <MyChart 
+                        label={'ActiveCases'} 
+                        data= {this.state.data}
+                    />
+                </div>
+            )
+        }
+        return(<div></div>);
     }
 }
 
