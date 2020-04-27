@@ -23,8 +23,8 @@ const MyChart = (props) => {
     return (
         <div
           style={{
-            width: '400px',
-            height: '300px'
+            width: '800px',
+            height: '400px'
           }}
         >
           <Chart data={data} axes={axes} tooltip/>
