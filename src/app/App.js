@@ -8,7 +8,6 @@ import DataComponent from "../components/DataComponent";
 const App = () => {
     return(
       <div>
-        <AppHeader />
         <DataComponent />
       </div>
   );

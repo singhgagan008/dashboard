@@ -9,11 +9,11 @@ class CountryDataComponent extends React.Component {
     }
 
     loadPromise(){
-        let promise = getCountrySummary(this.props.location.state.countryName.text);
-        promise            
-        .then(response =>
-          response.json().then(json => console.log(json)
-        ))
+        // let promise = getCountrySummary(this.props.location.state.countryName.text);
+        // promise            
+        // .then(response =>
+        //   response.json().then(json => console.log(json)
+        // ))
     }
     componentDidMount(){
         this.loadPromise();
@@ -22,7 +22,6 @@ class CountryDataComponent extends React.Component {
     render(){
         return(
             <div>
-                <div>{this.props.location.state.countryName.text}</div>
                 <MyChart />
             </div>
         )

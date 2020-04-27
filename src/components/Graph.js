@@ -6,11 +6,7 @@ const MyChart = () => {
       () => [
         {
           label: 'Series 1',
-          data: [[0, 1], [1, 2], [2, 4], [3, 2], [4, 7]]
-        },
-        {
-          label: 'Series 2',
-          data: [[0, 3], [1, 1], [2, 5], [3, 6], [4, 4]]
+          data: [[1585699200, 1], [1587699200, 2], [1589699200, 4], [1591699200, 2], [1593699200, 7]]
         }
       ],
       []
@@ -18,34 +14,20 @@ const MyChart = () => {
    
     const axes = React.useMemo(
       () => [
-        { primary: true, type: 'linear', position: 'bottom' },
+        { primary: true, type: 'time', position: 'bottom' },
         { type: 'linear', position: 'left' }
       ],
       []
     )
-   
-    // const lineChart = (
-    //   // A react-chart hyper-responsively and continuusly fills the available
-    //   // space of its parent element automatically
-    //   <div
-    //     style={{
-    //       width: '400px',
-    //       height: '300px'
-    //     }}
-    //   >
-    //     <Chart data={data} axes={axes} />
-    //   </div>
-    // )
+
     return (
-        // A react-chart hyper-responsively and continuusly fills the available
-        // space of its parent element automatically
         <div
           style={{
             width: '400px',
             height: '300px'
           }}
         >
-          <Chart data={data} axes={axes} />
+          <Chart data={data} axes={axes} tooltip/>
         </div>
     )
   }
