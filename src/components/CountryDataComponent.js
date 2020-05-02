@@ -55,9 +55,9 @@ class CountryDataComponent extends React.Component {
         if(this.state.totalCases.length > 0) {
             return(
                 <div>
-                    <MyChart data= {this.state.totalCases}/>
-                    <MyChart data= {this.state.deaths}/>
-                    <MyChart data= {this.state.recoveredCases}/>
+                    <MyChart data= {this.state.totalCases} label={'Total Cases'}/>
+                    <MyChart data= {this.state.deaths} label={'Total Deaths'}/>
+                    <MyChart data= {this.state.recoveredCases} label={'Recovered Cases'}/>
                 </div>
             )
         }
