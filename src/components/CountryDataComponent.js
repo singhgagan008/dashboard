@@ -5,27 +5,43 @@ import MyChart from './Graph';
 class CountryDataComponent extends React.Component {
     state={
         countryName: '',
-        data: []
+        totalCases: [],
+        deaths: [],
+        recoveredCases: []
     }
 
     loadPromise(){
         let promise = getCountrySummary(this.props.location.state.countryName.text);
         promise            
         .then(response =>
-          response.json().then(json => {this.formDataObject(json)}
+          response.json().then(json => {
+              this.formDataObject(json)
+            }
         ))
     }
 
     formDataObject(responseArray){
-        const dataObject = [];
+        const totalCasesObject = [];
+        const deathsObject = [];
+        const recoveredCasesObject = [];
         responseArray.forEach(element => {
-            dataObject.push({
+            totalCasesObject.push({
                 'date': element.Date,
                 'cases': element.Confirmed
             });
+            deathsObject.push({
+                'date': element.Date,
+                'cases': element.Deaths
+            });
+            recoveredCasesObject.push({
+                'date': element.Date,
+                'cases': element.Recovered
+            });
         });
         this.setState({
-            data: dataObject
+            totalCases: totalCasesObject,
+            deaths: deathsObject,
+            recoveredCases: recoveredCasesObject
         });
         console.log(this.state.data);
     }
@@ -36,12 +52,12 @@ class CountryDataComponent extends React.Component {
     }
 
     render(){
-        if(this.state.data.length > 0) {
+        if(this.state.totalCases.length > 0) {
             return(
                 <div>
-                    <MyChart data= {this.state.data}/>
-                    <MyChart data= {this.state.data}/>
-                    <MyChart data= {this.state.data}/>
+                    <MyChart data= {this.state.totalCases}/>
+                    <MyChart data= {this.state.deaths}/>
+                    <MyChart data= {this.state.recoveredCases}/>
                 </div>
             )
         }
