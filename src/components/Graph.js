@@ -1,35 +1,20 @@
 import React from 'react'
-import { Chart } from 'react-charts'
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
+
+const data = [{name: 'Page A', uv: 400},
+              {name: 'Page B', uv: 800}
+              ];
 
 const MyChart = (props) => {
-    const data = React.useMemo(
-      () => [
-        {
-          label: props.label,
-          data: props.data
-        }
-      ],
-      []
-    )
-   
-    const axes = React.useMemo(
-      () => [
-        { primary: true, type: 'time', position: 'bottom' },
-        { type: 'linear', position: 'left' }
-      ],
-      []
-    )
+  return (
+    <LineChart width={600} height={300} data={props.data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+      <Line type="monotone" dataKey="cases" stroke="#8884d8" />
+      <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+      <XAxis dataKey="date" />
+      <YAxis />
+      <Tooltip />
+    </LineChart>
+  );
+}
 
-    return (
-        <div
-          style={{
-            width: '800px',
-            height: '400px'
-          }}
-        >
-          <Chart data={data} axes={axes} tooltip/>
-        </div>
-    )
-  }
-
-  export default MyChart;
+export default MyChart;

@@ -1,6 +1,5 @@
 import React from 'react';
 import {getCountrySummary} from "../utils/APIUtils";
-import { Chart } from 'react-charts';
 import MyChart from './Graph';
  
 class CountryDataComponent extends React.Component {
@@ -20,24 +19,27 @@ class CountryDataComponent extends React.Component {
     formDataObject(responseArray){
         const dataObject = [];
         responseArray.forEach(element => {
-            dataObject.push([Date.parse(element.Date),element.Confirmed]);
+            dataObject.push({
+                'date': Date.parse(element.Date),
+                'cases': element.Confirmed
+            });
         });
         this.setState({
             data: dataObject
         });
+        console.log(this.state.data);
     }
 
     componentDidMount(){
         this.loadPromise();
+        
     }
 
     render(){
         if(this.state.data.length > 0) {
             return(
                 <div>
-                    <MyChart 
-                        label={'ActiveCases'} 
-                        data= {this.state.data}
+                    <MyChart data= {this.state.data}
                     />
                 </div>
             )
