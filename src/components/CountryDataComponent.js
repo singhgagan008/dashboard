@@ -20,7 +20,7 @@ class CountryDataComponent extends React.Component {
         const dataObject = [];
         responseArray.forEach(element => {
             dataObject.push({
-                'date': Date.parse(element.Date),
+                'date': element.Date,
                 'cases': element.Confirmed
             });
         });
@@ -39,8 +39,9 @@ class CountryDataComponent extends React.Component {
         if(this.state.data.length > 0) {
             return(
                 <div>
-                    <MyChart data= {this.state.data}
-                    />
+                    <MyChart data= {this.state.data}/>
+                    <MyChart data= {this.state.data}/>
+                    <MyChart data= {this.state.data}/>
                 </div>
             )
         }
