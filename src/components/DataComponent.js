@@ -3,7 +3,7 @@ import "antd/dist/antd.css";
 import CardTable from "../components/CardTable";
 import { Table } from "antd";
 import { COLUMN_NAME, PAGE_SIZE } from "../constants";
-import {getSummary} from "../utils/APIUtils";
+import {getSummary, getDate} from "../utils/APIUtils";
 import './component.css';
 
 class DataComponent extends React.Component {  
@@ -81,7 +81,10 @@ class DataComponent extends React.Component {
     const columns = COLUMN_NAME;
     return (
       <div className="dashContainer">
-        <div className = 'last-updated' >{this.state.lastUpdated}</div>
+        <div className = 'last-updated'>
+          <p>{'Last Updated :'}</p>
+          {getDate(this.state.lastUpdated)}
+        </div>
         <CardTable 
           totalCases =  {this.state.totalConfirmed}
           totalRecovered = {this.state.totalRecovered}

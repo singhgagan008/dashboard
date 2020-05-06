@@ -11,3 +11,7 @@ export function getCountrySummary(countryName){
         fetch(API_BASE_URL+`/total/country/${countryName}`)
     );
 }
+
+export function getDate(dateISO) {
+    return new Date(Date.parse(dateISO)).toDateString();
+}

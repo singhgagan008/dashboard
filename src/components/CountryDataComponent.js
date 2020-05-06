@@ -1,6 +1,7 @@
 import React from 'react';
-import {getCountrySummary} from "../utils/APIUtils";
+import {getCountrySummary, getDate} from "../utils/APIUtils";
 import MyChart from './Graph';
+
  
 class CountryDataComponent extends React.Component {
     state={
@@ -26,15 +27,15 @@ class CountryDataComponent extends React.Component {
         const recoveredCasesObject = [];
         responseArray.forEach(element => {
             totalCasesObject.push({
-                'date': element.Date,
+                'date': getDate(element.Date),
                 'cases': element.Confirmed
             });
             deathsObject.push({
-                'date': element.Date,
+                'date': getDate(element.Date),
                 'cases': element.Deaths
             });
             recoveredCasesObject.push({
-                'date': element.Date,
+                'date': getDate(element.Date),
                 'cases': element.Recovered
             });
         });
