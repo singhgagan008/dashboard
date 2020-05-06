@@ -1,7 +1,7 @@
 import React from "react";
 import "antd/dist/antd.css";
 import CardTable from "../components/CardTable";
-import { Table, Layout, Menu } from "antd";
+import { Table } from "antd";
 import { COLUMN_NAME, PAGE_SIZE } from "../constants";
 import {getSummary} from "../utils/APIUtils";
 import './component.css';

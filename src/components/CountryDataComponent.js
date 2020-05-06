@@ -43,7 +43,6 @@ class CountryDataComponent extends React.Component {
             deaths: deathsObject,
             recoveredCases: recoveredCasesObject
         });
-        console.log(this.state.data);
     }
 
     componentDidMount(){
@@ -54,10 +53,10 @@ class CountryDataComponent extends React.Component {
     render(){
         if(this.state.totalCases.length > 0) {
             return(
-                <div>
-                    <MyChart data= {this.state.totalCases} label={'Total Cases'}/>
-                    <MyChart data= {this.state.deaths} label={'Total Deaths'}/>
-                    <MyChart data= {this.state.recoveredCases} label={'Recovered Cases'}/>
+                <div className='charts-container'>
+                    <MyChart data= {this.state.totalCases} label={'Total Cases'} stroke = 'blue'/>
+                    <MyChart data= {this.state.deaths} label={'Total Deaths'} stroke = 'red'/>
+                    <MyChart data= {this.state.recoveredCases} label={'Recovered Cases'} stroke = 'green' />
                 </div>
             )
         }
