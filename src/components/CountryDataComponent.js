@@ -54,11 +54,17 @@ class CountryDataComponent extends React.Component {
     render(){
         if(this.state.totalCases.length > 0) {
             return(
-                <div className='charts-container'>
-                    <MyChart data= {this.state.totalCases} label={'Total Cases'} stroke = 'blue'/>
-                    <MyChart data= {this.state.deaths} label={'Total Deaths'} stroke = 'red'/>
-                    <MyChart data= {this.state.recoveredCases} label={'Recovered Cases'} stroke = 'green' />
+                <div>
+                    <div className='countryList column left'>
+                        <p>here table will be displayed</p>
+                    </div>
+                    <div className='charts-container column right'>
+                        <MyChart data= {this.state.totalCases} label={'Total Cases'} stroke = 'blue'/>
+                        <MyChart data= {this.state.deaths} label={'Total Deaths'} stroke = 'red'/>
+                        <MyChart data= {this.state.recoveredCases} label={'Recovered Cases'} stroke = 'green' />
+                    </div>
                 </div>
+                
             )
         }
         return(<div></div>);

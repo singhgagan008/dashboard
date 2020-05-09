@@ -34,7 +34,8 @@ class DataComponent extends React.Component {
                 totalDeaths: json.Global.TotalDeaths,
                 newDeaths: json.Global.NewDeaths,
                 newRecovered: json.Global.NewRecovered,
-                totalRecovered: json.Global.NewRecovered
+                totalRecovered: json.Global.TotalRecovered,
+                recoveryRate: (json.Global.TotalRecovered/json.Global.TotalConfirmed).toFixed(2)
               });
 
               for (let i = 0; i < json.Countries.length; i++) {
@@ -46,7 +47,8 @@ class DataComponent extends React.Component {
                   totalDeaths: json.Countries[i].TotalDeaths,
                   newDeaths: json.Countries[i].NewDeaths,
                   newRecovered: json.Countries[i].NewRecovered,
-                  totalRecovered: json.Countries[i].TotalRecovered
+                  totalRecovered: json.Countries[i].TotalRecovered,
+                  recoveryRate: (json.Countries[i].TotalConfirmed > 0 ? json.Countries[i].TotalRecovered/json.Countries[i].TotalConfirmed : 1).toFixed(2)
                 });
               }
 
@@ -69,12 +71,11 @@ class DataComponent extends React.Component {
 
   componentDidMount(){
     this.loadPromise();
-    //this.getTableData();
-    console.log(this.state.data);
   }
 
   componentDidUpdate() {
     console.log('Component did update!')
+    console.log(this.state.data);
   }
   
   render() {

@@ -87,6 +87,15 @@ export const COLUMN_NAME = [
         compare: (a, b) => a.newRecovered - b.newRecovered,
         multiple: 7,
       },
+    },
+    {
+      title: "Recovery Rate",
+      dataIndex: "recoveryRate",
+      width: 150,
+      sorter: {
+        compare: (a, b) => a.recoveryRate - b.recoveryRate,
+        multiple: 8,
+      },
     }
   ];
 

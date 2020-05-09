@@ -21,3 +21,23 @@
     margin-right:auto;
    width:50%;
 }
+
+.left {
+    width: 25%;
+  }
+  
+.right {
+    width: 75%;
+}
+  
+  /* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.column {
+    float: left;
+    padding: 10px;
+}
