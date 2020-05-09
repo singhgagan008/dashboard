@@ -1,7 +1,7 @@
 import React from 'react';
 import {getCountrySummary, getDate} from "../utils/APIUtils";
 import MyChart from './Graph';
-
+import CountryListTable from './CountryListTable';
  
 class CountryDataComponent extends React.Component {
     state={
@@ -56,7 +56,7 @@ class CountryDataComponent extends React.Component {
             return(
                 <div>
                     <div className='countryList column left'>
-                        <p>here table will be displayed</p>
+                        <CountryListTable/>
                     </div>
                     <div className='charts-container column right'>
                         <MyChart data= {this.state.totalCases} label={'Total Cases'} stroke = 'blue'/>
