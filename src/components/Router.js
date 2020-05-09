@@ -10,7 +10,7 @@ const Router = () => (
         <AppHeader />
         <Switch>
             <Route path="/" component={ App } exact />
-            <Route path="/country/:name" component={CountryDataComponent} />
+            <Route path="/country/:name" component={CountryDataComponent} exact/>
         </Switch>
     </BrowserRouter>
 );

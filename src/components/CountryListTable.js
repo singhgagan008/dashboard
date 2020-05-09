@@ -2,6 +2,7 @@ import React from 'react';
 import { Table } from "antd";
 import { COUNTRY_LIST, PAGE_SIZE } from '../constants'
 import {getCountryList} from '../utils/APIUtils'
+import {Link,NavLink} from 'react-router-dom';
 
 class CountryListTable extends React.Component {
     state = {
@@ -34,8 +35,44 @@ class CountryListTable extends React.Component {
         this.loadCountryList();
     }
 
-    componentDidUpdate(){
-        console.log(this.state.countryList);
+    click(text) {
+        this.props.parentCallback(text);
+    }
+
+    getCountryList() {
+        return [{
+            title: "Country",
+            dataIndex: "country",
+            width: 150,
+            sorter: {
+              compare: 
+              function(a, b) {
+                if (a.country > b.country) {
+                  return 1;
+                }
+                if (a.country < b.country) {
+                  return -1;
+                }
+                return 0;
+              }
+              ,
+              multiple: 1,
+            },
+            render: (text,record) => (
+              <div >
+              <NavLink
+                    to ={{ 
+                      pathname:`/country/${text.toLowerCase()}`,
+                      
+                    }}
+                    onClick={() => {
+                        this.click(text);
+                    }}
+                  >{text}
+                  </NavLink>
+              </div>
+              )
+          }];
     }
     
     render(){
@@ -43,7 +80,7 @@ class CountryListTable extends React.Component {
             return ( 
                 <Table 
                     dataSource={this.state.countryList} 
-                    columns={COUNTRY_LIST}
+                    columns={this.getCountryList()}
                     pagination={{ pageSize: PAGE_SIZE }}
                     scroll={{ y: 840 }}
                     size="small"

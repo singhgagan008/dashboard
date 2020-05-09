@@ -1,9 +1,10 @@
 import React from 'react';
-import {getCountrySummary, getDate} from "../utils/APIUtils";
+import { getCountrySummary, getDate } from "../utils/APIUtils";
 import MyChart from './Graph';
 import CountryListTable from './CountryListTable';
- 
-class CountryDataComponent extends React.Component {
+import { withRouter } from 'react-router';
+
+class CountryDataComponent extends React.Component {    
     state={
         countryName: '',
         totalCases: [],
@@ -11,8 +12,8 @@ class CountryDataComponent extends React.Component {
         recoveredCases: []
     }
 
-    loadPromise(){
-        let promise = getCountrySummary(this.props.location.state.countryName.text);
+    loadPromise(params){
+        let promise = getCountrySummary(params);
         promise            
         .then(response =>
           response.json().then(json => {
@@ -47,16 +48,36 @@ class CountryDataComponent extends React.Component {
     }
 
     componentDidMount(){
-        this.loadPromise();
-        
+        // console.log("componentdidmount")
+        // console.log(this.props.match.params);
+        this.loadPromise(this.props.match.params.name);  
+    }
+
+    componentWillReceiveProps(nextProps) {
+        // console.log(this.props);
+        // if (nextProps.location.xyz.text != this.state.countryName) {
+        //   this.setState({
+        //       countryName:nextProps.location.xyz.text
+        //   });
+        // }
+      }
+
+    callbackFunction = (childData) => {
+        this.setState({
+            totalCases: []
+        });
+        this.loadPromise(childData);
     }
 
     render(){
+        // const { params } = this.props.match;
+        // console.log(params);
+        // console.log(this.state);
         if(this.state.totalCases.length > 0) {
             return(
                 <div>
                     <div className='countryList column left'>
-                        <CountryListTable/>
+                        <CountryListTable parentCallback = {this.callbackFunction}/>
                     </div>
                     <div className='charts-container column right'>
                         <MyChart data= {this.state.totalCases} label={'Total Cases'} stroke = 'blue'/>
@@ -66,8 +87,10 @@ class CountryDataComponent extends React.Component {
                 </div>
                 
             )
+        } else {
+            // this.loadPromise(params.name);
+            return(<div></div>);
         }
-        return(<div></div>);
     }
 }
 

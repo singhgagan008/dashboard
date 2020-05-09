@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link,NavLink} from 'react-router-dom';
 
 export const API_BASE_URL = 'https://api.covid19api.com';
 
@@ -118,5 +118,15 @@ export const COUNTRY_LIST = [{
     }
     ,
     multiple: 1,
-  }
+  },
+  render: (text,record) => (
+    <div onClick={this.click.bind(this, text)}>
+    <NavLink
+          to ={{ 
+            pathname:`/country/${text.toLowerCase()}`,
+          }}
+        >{text}
+        </NavLink>
+    </div>
+    )
 }];
