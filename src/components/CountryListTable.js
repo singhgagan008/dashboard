@@ -1,6 +1,6 @@
 import React from 'react';
 import { Table } from "antd";
-import { COUNTRY_LIST } from '../constants'
+import { COUNTRY_LIST, PAGE_SIZE } from '../constants'
 import {getCountryList} from '../utils/APIUtils'
 
 class CountryListTable extends React.Component {
@@ -43,7 +43,10 @@ class CountryListTable extends React.Component {
             return ( 
                 <Table 
                     dataSource={this.state.countryList} 
-                    columns={COUNTRY_LIST} 
+                    columns={COUNTRY_LIST}
+                    pagination={{ pageSize: PAGE_SIZE }}
+                    scroll={{ y: 840 }}
+                    size="small"
                 />
             );
         }
