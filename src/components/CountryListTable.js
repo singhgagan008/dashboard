@@ -1,17 +1,53 @@
 import React from 'react';
 import { Table } from "antd";
 import { COUNTRY_LIST } from '../constants'
+import {getCountryList} from '../utils/APIUtils'
 
 class CountryListTable extends React.Component {
-    render(){
-        const dataSource = [
+    state = {
+        countryList: []
+    }
+
+    loadCountryList(){
+        let promise = getCountryList();
+        promise.then(response =>
+            response.json().then(json =>
             {
-            key: '1',
-            name: 'Mike'
-            }
-        ];
-        
-        return ( <Table dataSource={dataSource} columns={COUNTRY_LIST} />);
+                const countryArray = [];
+                for (let i = 0; i < json.length; i++) {
+                    countryArray.push({
+                        key: json[i].Slug,
+                        country: json[i].Country
+                    })
+                }
+                this.setState({
+                    countryList:countryArray
+                }
+                        
+                    
+                )
+            })
+        )
+    }
+
+    componentDidMount(){
+        this.loadCountryList();
+    }
+
+    componentDidUpdate(){
+        console.log(this.state.countryList);
+    }
+    
+    render(){
+        if(this.state.countryList.length > 0) {
+            return ( 
+                <Table 
+                    dataSource={this.state.countryList} 
+                    columns={COUNTRY_LIST} 
+                />
+            );
+        }
+        return(<div></div>);        
     }
 }
 

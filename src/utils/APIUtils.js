@@ -12,6 +12,12 @@ export function getCountrySummary(countryName){
     );
 }
 
+export function getCountryList(){
+    return (
+        fetch(API_BASE_URL+`/countries`)
+    );
+}
+
 export function getDate(dateISO) {
     return new Date(Date.parse(dateISO)).toDateString();
 }
