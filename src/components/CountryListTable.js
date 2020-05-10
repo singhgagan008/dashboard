@@ -4,6 +4,8 @@ import { COUNTRY_LIST, PAGE_SIZE } from '../constants'
 import {getCountryList} from '../utils/APIUtils'
 import {Link,NavLink} from 'react-router-dom';
 
+import SearchComponent from './SearchComponent'
+
 class CountryListTable extends React.Component {
     state = {
         countryList: []
@@ -76,13 +78,17 @@ class CountryListTable extends React.Component {
     render(){
         if(this.state.countryList.length > 0) {
             return ( 
-                <Table 
+                <div>
+                   <SearchComponent list={this.state.countryList}/>
+                   <div></div>
+                   <Table 
                     dataSource={this.state.countryList} 
                     columns={this.getCountryList()}
                     pagination={{ pageSize: PAGE_SIZE }}
                     scroll={{ y: 840 }}
                     size="small"
-                />
+                    />
+                </div>
             );
         }
         return(<div></div>);        

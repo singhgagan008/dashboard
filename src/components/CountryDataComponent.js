@@ -39,6 +39,7 @@ class CountryDataComponent extends React.Component {
                     <div className='charts-container column right'>
                         <GraphComponent countryName={this.state.countryName}/>
                     </div>
+\
                 </div>
                 
             )
