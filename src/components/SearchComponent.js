@@ -7,22 +7,6 @@ const { Option } = Select;
 
 class SearchComponent extends React.Component {
 
-    onChange(value) {
-      console.log(`selected ${value}`);
-    }
-
-    onBlur() {
-      console.log('blur');
-    }
-
-    onFocus() {
-      console.log('focus');
-    }
-
-    onSearch(val) {
-      console.log('search:', val);
-    }
-
     optionList(){
       const children = [];
       const countryList = this.props.list.sort(function(a,b){
