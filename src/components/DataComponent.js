@@ -72,11 +72,6 @@ class DataComponent extends React.Component {
   componentDidMount(){
     this.loadPromise();
   }
-
-  componentDidUpdate() {
-    console.log('Component did update!')
-    console.log(this.state.data);
-  }
   
   render() {
     const columns = COLUMN_NAME;

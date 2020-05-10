@@ -1,8 +1,8 @@
 import React from 'react';
 import { Table } from "antd";
-import { COUNTRY_LIST, PAGE_SIZE } from '../constants'
+import { PAGE_SIZE } from '../constants'
 import {getCountryList} from '../utils/APIUtils'
-import {Link,NavLink} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 import SearchComponent from './SearchComponent'
 

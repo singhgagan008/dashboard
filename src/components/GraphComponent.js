@@ -52,7 +52,7 @@ class GraphComponent extends React.Component{
     }
 
     componentWillReceiveProps(nextProps){
-        if(nextProps.countryName != this.props.countryName){
+        if(nextProps.countryName !== this.props.countryName){
             this.setState({
                 totalCases: []
             }, () => {

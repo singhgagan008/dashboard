@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link,NavLink} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 export const API_BASE_URL = 'https://api.covid19api.com';
 
@@ -100,34 +100,3 @@ export const COLUMN_NAME = [
   ];
 
 export const PAGE_SIZE = 50;
-
-export const COUNTRY_LIST = [{
-  title: "Country",
-  dataIndex: "country",
-  width: 150,
-  sorter: {
-    compare: 
-    function(a, b) {
-      if (a.country > b.country) {
-        return 1;
-      }
-      if (a.country < b.country) {
-        return -1;
-      }
-      return 0;
-    }
-    ,
-    multiple: 1,
-  },
-  render: (text,record) => (
-    // <div onClick={this.click.bind(this, text)}>
-    <div>
-    <NavLink
-          to ={{ 
-            pathname:`/country/${text.toLowerCase()}`,
-          }}
-        >{text}
-        </NavLink>
-    </div>
-    )
-}];

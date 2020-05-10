@@ -1,7 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import { Select } from 'antd';
+import {Link} from 'react-router-dom';
 
 const { Option } = Select;
 
@@ -35,9 +35,14 @@ class SearchComponent extends React.Component {
         return 0
       }
       );
-      console.log(countryList);
       for (let i = 0; i < countryList.length; i++) {
-        children.push(<Option key={countryList[i].key}>{countryList[i].country}</Option>);
+        children.push(
+        <Option key={countryList[i].key}>
+          <Link to={`/country/${countryList[i].country}`} className="nav-text">
+            {countryList[i].country}
+          </Link>
+          
+        </Option>);
       }
       return children;
     }
