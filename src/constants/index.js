@@ -120,7 +120,8 @@ export const COUNTRY_LIST = [{
     multiple: 1,
   },
   render: (text,record) => (
-    <div onClick={this.click.bind(this, text)}>
+    // <div onClick={this.click.bind(this, text)}>
+    <div>
     <NavLink
           to ={{ 
             pathname:`/country/${text.toLowerCase()}`,

@@ -1,97 +1,51 @@
 import React from 'react';
-import { getCountrySummary, getDate } from "../utils/APIUtils";
-import MyChart from './Graph';
 import CountryListTable from './CountryListTable';
-import { withRouter } from 'react-router';
+import GraphComponent from './GraphComponent';
+import {withRouter} from "react-router-dom";
 
-class CountryDataComponent extends React.Component {    
-    state={
-        countryName: '',
-        totalCases: [],
-        deaths: [],
-        recoveredCases: []
+class CountryDataComponent extends React.Component {  
+
+    state = {
+        countryName: ''
     }
-
-    loadPromise(params){
-        let promise = getCountrySummary(params);
-        promise            
-        .then(response =>
-          response.json().then(json => {
-              this.formDataObject(json)
-            }
-        ))
-    }
-
-    formDataObject(responseArray){
-        const totalCasesObject = [];
-        const deathsObject = [];
-        const recoveredCasesObject = [];
-        responseArray.forEach(element => {
-            totalCasesObject.push({
-                'date': getDate(element.Date),
-                'cases': element.Confirmed
-            });
-            deathsObject.push({
-                'date': getDate(element.Date),
-                'cases': element.Deaths
-            });
-            recoveredCasesObject.push({
-                'date': getDate(element.Date),
-                'cases': element.Recovered
-            });
-        });
+    
+    callbackFunction = (childData) => {
         this.setState({
-            totalCases: totalCasesObject,
-            deaths: deathsObject,
-            recoveredCases: recoveredCasesObject
+            countryName: childData
         });
     }
 
     componentDidMount(){
-        // console.log("componentdidmount")
-        // console.log(this.props.match.params);
-        this.loadPromise(this.props.match.params.name);  
+       this.setState({
+        countryName: this.props.location.state ? this.props.location.state.countryName.text.toLowerCase() : window.location.pathname.replace('/country/','')
+       })
     }
 
-    componentWillReceiveProps(nextProps) {
-        // console.log(this.props);
-        // if (nextProps.location.xyz.text != this.state.countryName) {
-        //   this.setState({
-        //       countryName:nextProps.location.xyz.text
-        //   });
-        // }
-      }
-
-    callbackFunction = (childData) => {
-        this.setState({
-            totalCases: []
-        });
-        this.loadPromise(childData);
+    componentDidUpdate(prev){
+        if(this.props.location.pathname != prev.location.pathname) {
+            this.setState({
+                countryName: this.props.location.pathname.replace('/country/','')
+            })
+        }
     }
 
     render(){
-        // const { params } = this.props.match;
-        // console.log(params);
-        // console.log(this.state);
-        if(this.state.totalCases.length > 0) {
+        if(this.state.countryName != '') {
             return(
                 <div>
                     <div className='countryList column left'>
                         <CountryListTable parentCallback = {this.callbackFunction}/>
                     </div>
                     <div className='charts-container column right'>
-                        <MyChart data= {this.state.totalCases} label={'Total Cases'} stroke = 'blue'/>
-                        <MyChart data= {this.state.deaths} label={'Total Deaths'} stroke = 'red'/>
-                        <MyChart data= {this.state.recoveredCases} label={'Recovered Cases'} stroke = 'green' />
+                        <GraphComponent countryName={this.state.countryName}/>
                     </div>
                 </div>
                 
             )
-        } else {
-            // this.loadPromise(params.name);
-            return(<div></div>);
         }
+        return <div></div>
+
     }
 }
 
-export default CountryDataComponent;
+export default withRouter(props => <CountryDataComponent {...props}/>);

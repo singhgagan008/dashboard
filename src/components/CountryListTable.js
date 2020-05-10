@@ -23,10 +23,7 @@ class CountryListTable extends React.Component {
                 }
                 this.setState({
                     countryList:countryArray
-                }
-                        
-                    
-                )
+                })
             })
         )
     }
@@ -59,8 +56,8 @@ class CountryListTable extends React.Component {
               multiple: 1,
             },
             render: (text,record) => (
-              <div >
-              <NavLink
+                <div >
+                <NavLink
                     to ={{ 
                       pathname:`/country/${text.toLowerCase()}`,
                       
@@ -68,8 +65,9 @@ class CountryListTable extends React.Component {
                     onClick={() => {
                         this.click(text);
                     }}
-                  >{text}
-                  </NavLink>
+                    >
+                    {text}
+                </NavLink>
               </div>
               )
           }];
