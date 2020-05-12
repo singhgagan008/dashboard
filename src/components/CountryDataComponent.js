@@ -32,14 +32,13 @@ class CountryDataComponent extends React.Component {
     render(){
         if(this.state.countryName !== '') {
             return(
-                <div>
+                <div className="dashboard">
                     <div className='countryList column left'>
                         <CountryListTable parentCallback = {this.callbackFunction}/>
                     </div>
                     <div className='charts-container column right'>
                         <GraphComponent countryName={this.state.countryName}/>
                     </div>
-\
                 </div>
                 
             )

@@ -79,7 +79,7 @@ class CountryListTable extends React.Component {
         if(this.state.countryList.length > 0) {
             return ( 
                 <div>
-                   <SearchComponent list={this.state.countryList}/>
+                   <SearchComponent className='searchBar' list={this.state.countryList}/>
                    <div></div>
                    <Table 
                     dataSource={this.state.countryList} 

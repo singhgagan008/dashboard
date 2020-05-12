@@ -1,7 +1,7 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import { Select } from 'antd';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 
 const { Option } = Select;
 
@@ -21,12 +21,12 @@ class SearchComponent extends React.Component {
       );
       for (let i = 0; i < countryList.length; i++) {
         children.push(
-        <Option key={countryList[i].key}>
-          <Link to={`/country/${countryList[i].country}`} className="nav-text">
-            {countryList[i].country}
-          </Link>
-          
-        </Option>);
+          <Option key={countryList[i].key}>
+            <Link to={`/country/${countryList[i].country}`} className="nav-text">
+              {countryList[i].country}
+            </Link>
+          </Option>
+        );
       }
       return children;
     }
@@ -38,13 +38,13 @@ class SearchComponent extends React.Component {
                 showSearch
                 style={{ width: 200 }}
                 placeholder="Select a Country"
-                optionFilterProp="children"
+                optionFilterProp="key"
                 onChange={this.onChange}
                 onFocus={this.onFocus}
                 onBlur={this.onBlur}
                 onSearch={this.onSearch}
-                filterOption={(input, option) =>
-                  option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                filterOption={(input, option) => 
+                   option.key.toLowerCase().indexOf(input.toLowerCase()) >= 0
                 }
             >
                 {this.optionList()}
